@@ -26,6 +26,8 @@ myFlag = tk.PhotoImage(file='flags.png')
 myCoins = tk.PhotoImage(file='coinsilver.png')
 # myDiamond = tk.PhotoImage(file='diamond2.png')
 myAnemie1 = tk.PhotoImage(file='anemie1.png')
+myGameover = tk.PhotoImage(file='gameover.png')
+myWin = tk.PhotoImage(file='youwin.png')
 # Display Background
 bg=tk.PhotoImage(file='background2.png')
 # canvas.create_image(0,0, image=bg,anchor="nw")
@@ -65,7 +67,7 @@ def displayMessageLost():
     messagebox.showinfo("Title", "You Lost!")
 def moveLeft(event):
 
-    global grid ,score
+    global grid ,score,myGameover,myWin
     for row in range(len(grid)):
         for col in range(len(grid[0])):
             if grid[row][col]==1:
@@ -74,22 +76,23 @@ def moveLeft(event):
     if indexCol>0:
         if grid[indexRow][indexCol-1]==3:
             winsound .PlaySound("win.wav", winsound.SND_FILENAME)
+            canvas.create_image(400,50,image=myWin)
             displayMessageWin()
         if grid[indexRow][indexCol-1]==4:
             #  Play the sound 
             winsound .PlaySound("coin5.wav", winsound.SND_FILENAME)
             score+=20
-            canvas.create_text(200, 200, text=score,fill="black")
         if grid[indexRow][indexCol-1]==6:
             winsound .PlaySound("hit3.wav", winsound.SND_FILENAME)
+            canvas.create_image(400,50,image=myGameover)
             displayMessageLost()
         if grid[indexRow][indexCol-1]!=2:
             grid[indexRow][indexCol]=0
             grid[indexRow][indexCol-1]=1
     drawGrid()
-    canvas.create_text(100,100,fill="blue")
+    # canvas.create_text(100,100,fill="blue")
 def moveRight(event):
-    global grid,score
+    global grid,score,myGameover,myWin
     # indexX=-1
     # indexY=-1
     for row in range(len(grid)):
@@ -100,6 +103,7 @@ def moveRight(event):
     if indexCol <len(grid[0])-1:
         if grid[indexRow][indexCol+1]==3:
             winsound .PlaySound("win.wav", winsound.SND_FILENAME)
+            canvas.create_image(400,50,image=myWin)
             displayMessageWin()
         if grid[indexRow][indexCol+1]==4:
             #  Play the sound 
@@ -107,14 +111,14 @@ def moveRight(event):
             score+=20
         if grid[indexRow][indexCol+1]==6:
             winsound .PlaySound("hit3.wav", winsound.SND_FILENAME)
+            canvas.create_image(400,50,image=myGameover)
             displayMessageLost()
         if grid[indexRow][indexCol+1]!=2:
             grid[indexRow][indexCol]=0
             grid[indexRow][indexCol+1]=1
     drawGrid()
-    canvas.create_text(100,100,fill="blue")
 def moveUp(event):
-    global grid,score
+    global grid,score,myGameover,myWin
     for row in range(len(grid)):
         for col in range(len(grid[0])):
             if grid[row][col]==1:
@@ -123,6 +127,7 @@ def moveUp(event):
     if indexRow >0:
         if grid[indexRow-1][indexCol]==3:
             winsound .PlaySound("win.wav", winsound.SND_FILENAME)
+            canvas.create_image(400,50,image=myWin)
             displayMessageWin()
         if grid[indexRow-1][indexCol]==4:
             # Play the sound 
@@ -130,14 +135,15 @@ def moveUp(event):
             score+=20
         if grid[indexRow-1][indexCol]==6:
             winsound .PlaySound("hit3.wav", winsound.SND_FILENAME)
+            canvas.create_image(400,50,image=myGameover)
             displayMessageLost()
         if grid[indexRow-1][indexCol]!=2:
             grid[indexRow][indexCol]=0
             grid[indexRow-1][indexCol]=1
     drawGrid()
-    canvas.create_text(100,100,fill="blue")
+    # canvas.create_text(100,100,fill="blue")
 def moveDown(event):
-    global grid,score
+    global grid,score,myGameover,myWin
     for row in range(len(grid)):
         for col in range(len(grid[0])):
             if grid[row][col]==1:
@@ -146,6 +152,7 @@ def moveDown(event):
     if indexRow <len(grid)-1:
         if grid[indexRow+1][indexCol]==3:
             winsound .PlaySound("win.wav", winsound.SND_FILENAME)
+            canvas.create_image(400,50,image=myWin)
             displayMessageWin()
         if grid[indexRow+1][indexCol]==4:
             # Play the sound 
@@ -153,12 +160,13 @@ def moveDown(event):
             score+=20
             if grid[indexRow+1][indexCol]==6:
                 winsound .PlaySound("hit3.wav", winsound.SND_FILENAME)
+                canvas.create_image(400,50,image=myGameover)
                 displayMessageLost()
         if grid[indexRow+1][indexCol]!=2:
             grid[indexRow][indexCol]=0
             grid[indexRow+1][indexCol]=1
     drawGrid()
-    canvas.create_text(100,100,fill="blue")
+    # canvas.create_text(100,100,fill="blue")
 
 canvas=tk.Canvas(root)
 root.bind("<Left>",moveLeft)#move to left
