@@ -70,11 +70,11 @@ def reduceTime():
         canvas.after(1000,lambda:reduceTime())
 # displayMessagewin
 def displayMessageWin():
-    messagebox.showinfo("Title", "You Win!",font=("Purisa",30),fill="green")
+    messagebox.showinfo("Title", "You Win!")
     root.destroy()
 # displayMessagelost
 def displayMessageLost():
-    messagebox.showinfo("Title", "You Lost!",font("Purisa",30),fill="red")
+    messagebox.showinfo("Title", "You Lost!")
     root.destroy()
 # player move left
 def moveLeft(event):
